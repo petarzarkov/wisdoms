@@ -1,6 +1,6 @@
 
 import { Context, Request } from "koa";
-import { buildResponse, errorResponse } from "./responseBuilder";
+import { buildResponse, errorResponse, successResponse } from "./responseBuilder";
 
 const errorResponseComposer = async (ctx: Context, err: Error) => {
     console.error(`Error raised on ${ctx.path} request`,{ err: <Error>err });
@@ -8,11 +8,11 @@ const errorResponseComposer = async (ctx: Context, err: Error) => {
     buildResponse(ctx, errorResponse(ctx));
 };
 
-export const responseComposer = <T>(handler: (request: T) => Promise<unknown>) => {
+export const responseComposer = <T, R>(handler: (request: T) => Promise<R>) => {
     return async (ctx: Context) => {
-        const body = (ctx.request as Request).body as T;
+        const req = {...(ctx.request as Request).body, ...(ctx.request as Request).query } as T;
         try {
-            buildResponse(ctx, await handler(body));
+            buildResponse(ctx, successResponse(ctx, await handler(req)));
         } catch (error) {
             errorResponseComposer(ctx, error);
         }
