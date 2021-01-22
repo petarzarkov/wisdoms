@@ -1,6 +1,6 @@
 import { Context } from "koa";
 import Router from "koa-router";
-import { getDadJoke } from "../api/getDadJoke";
+import { getDadJoke, searchDadJoke } from "../api";
 import { buildResponse, responseComposer, successResponse } from "../utils";
 
 export function apiRouter(): Router {
@@ -14,6 +14,8 @@ export function apiRouter(): Router {
     });
 
     router.get("DadJoke", "/getDadJoke", responseComposer(getDadJoke));
+
+    router.get("SearchDadJoke", "/searchDadJoke", responseComposer(searchDadJoke));
 
     return router;
 }

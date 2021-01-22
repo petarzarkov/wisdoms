@@ -15,8 +15,8 @@ export const fetchConstructor = <TRequest = void, TResponse = void>({
     return await fetchService<TRequest, TResponse>({
         url,
         method,
-        payload: payload || staticPayload,
-        options: options || staticOptions
+        payload: payload ? Object.assign(staticPayload || {}, payload) : staticPayload,
+        options: options ? Object.assign(staticOptions || {}, options) : staticOptions
     });
 };
 
