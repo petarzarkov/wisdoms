@@ -3,7 +3,7 @@ import { Context, Request } from "koa";
 import { buildResponse, errorResponse, successResponse } from "./responseBuilder";
 
 const errorResponseComposer = async (ctx: Context, err: Error) => {
-    console.error(`Error raised on ${ctx.path} request`,{ err: <Error>err });
+    console.error(`Error raised on ${ctx.path} request`, { err: <Error>err });
 
     buildResponse(ctx, errorResponse(ctx));
 };

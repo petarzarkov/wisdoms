@@ -19,9 +19,9 @@ module.exports = {
   plugins: ["@typescript-eslint"],
   rules: {
     "@typescript-eslint/explicit-module-boundary-types": "off",
-    "@typescript-eslint/indent": "error",
+    "@typescript-eslint/indent": "warn",
     "@typescript-eslint/member-delimiter-style": [
-        "error",
+        "warn",
         {
             "multiline": {
                 "delimiter": "semi",
@@ -33,49 +33,50 @@ module.exports = {
             }
         }
     ],
-    "@typescript-eslint/no-unused-expressions": "error",
+    "@typescript-eslint/no-unused-expressions": "warn",
     "@typescript-eslint/quotes": [
-        "error",
+        "warn",
         "double"
     ],
     "@typescript-eslint/semi": [
-        "error",
+        "warn",
         "always"
     ],
     "brace-style": [
-        "error",
+        "warn",
         "1tbs"
     ],
     "curly": [
-        "error",
+        "warn",
         "multi-line"
     ],
     "max-len": [
         "error",
         {
-            "code": 180
+            "code": 200
         }
     ],
-    "no-caller": "error",
-    "no-constant-condition": "error",
-    "no-control-regex": "error",
+    "no-caller": "warn",
+    "no-constant-condition": "warn",
+    "no-control-regex": "warn",
     "no-eval": "error",
     "no-extra-semi": "error",
     "no-invalid-regexp": "error",
-    "no-irregular-whitespace": "error",
+    "no-irregular-whitespace": "warn",
     "no-multiple-empty-lines": [
-        "error",
+        "warn",
         {
             "max": 1
         }
     ],
-    "no-octal": "error",
-    "no-octal-escape": "error",
-    "no-regex-spaces": "error",
+    "no-octal": "warn",
+    "no-octal-escape": "warn",
+    "no-regex-spaces": "warn",
     "no-restricted-syntax": [
         "error",
         "ForInStatement"
     ],
-    "no-trailing-spaces": "error"
-  },
+    "no-trailing-spaces": "warn",
+    "capitalized-comments": "warn"
+    }
 };

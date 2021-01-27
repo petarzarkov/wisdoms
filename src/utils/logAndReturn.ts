@@ -4,7 +4,7 @@ type LogTurn<T> = {
     res: T;
 };
 
-export const logAndReturn = <T>({ message, duration = 0, res }: LogTurn<T>) => {
+export const logAndReturn = <T>({ message, duration = 0, res }: LogTurn<T>): T => {
     console.log({ message, duration });
     return res;
 };
