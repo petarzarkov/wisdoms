@@ -7,12 +7,12 @@ export function buildResponse<R>(ctx: Context, response: R) {
     ctx.body = response;
 }
 
-export function errorResponse(ctx: Context, error = "Oops! Something happened") {
-    ctx.status = StatusCodes.INTERNAL_SERVER_ERROR;
-    return { error };
+export function errorResponse(ctx: Context, error = "Oops! Something happened", status = StatusCodes.INTERNAL_SERVER_ERROR) {
+    ctx.status = status;
+    return { success: false, error };
 }
 
 export function successResponse<R>(ctx: Context, response: R) {
     ctx.status = StatusCodes.OK;
-    return {  ...response };
+    return { sucess: true, ...response };
 }

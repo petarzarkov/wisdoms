@@ -1,6 +1,7 @@
 import Koa from "koa";
 import bodyParser from "koa-bodyparser";
 import logger from "koa-logger";
+import { PORT } from "../utils";
 import { apiRouter } from "../routers";
 
 export async function startKoa(): Promise<void> {
@@ -12,7 +13,7 @@ export async function startKoa(): Promise<void> {
 
     app.use(apiRouter().routes());
 
-    app.listen(process.env.PORT, () => {
-        console.log("Starting app on...", { port: process.env.PORT });
+    app.listen(PORT, () => {
+        console.log("Starting app on...", { PORT });
     });
 }
