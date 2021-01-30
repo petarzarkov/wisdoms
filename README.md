@@ -33,6 +33,7 @@ Fetches a random dad joke
 
 Fetches a random dad joke based on query 'term'
 * _/api/searchDadJoke_ 
+* example: https://ts-starter-jokes.herokuapp.com/api/searchDadJoke?term=dad
 
 Liveness probe
 * _/api/healthcheck_
