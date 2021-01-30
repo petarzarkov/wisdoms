@@ -1,18 +1,13 @@
-import { Context } from "koa";
 import Router from "koa-router";
 import { attachReqType, validateRequest } from "../middlewares";
-import { getDadJoke, searchDadJoke } from "../api";
-import { buildResponse, responseComposer, successResponse } from "../utils";
+import { getDadJoke, healthcheck, searchDadJoke } from "../api";
+import { responseComposer } from "../utils";
 
 export function apiRouter(): Router {
     const router = new Router();
     router.prefix("/api/");
 
-    router.get("Info", "/info", async (ctx: Context) => {
-        return buildResponse(ctx, successResponse(ctx, {
-            message: "All good!"
-        }));
-    });
+    router.get("Healthcheck", "/healthcheck", responseComposer(healthcheck));
 
     router.get("DadJoke", "/getDadJoke", responseComposer(getDadJoke));
 
