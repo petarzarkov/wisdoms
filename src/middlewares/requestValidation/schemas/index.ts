@@ -1,6 +1,6 @@
 import { Schema } from "jsonschema";
-import { searchDadJokeSchema } from "./searchDadJokeSchema";
+import { getWisdomSchema } from "./getWisdomSchema";
 
 export const schemas: { [key in string]: Schema } = {
-    searchDadJoke: searchDadJokeSchema
+    getWisdom: getWisdomSchema
 };
