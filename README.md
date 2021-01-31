@@ -1,5 +1,5 @@
 # TS-starter
-A base NodeJS project with TS, Lint, HTTP, and Koa
+An app for wisdoms
 
 Description
 -
@@ -42,7 +42,7 @@ Liveness probe
 {
     "sucess": true,
     "version": "1.0.0",
-    "name": "ts-starter"
+    "name": "wisdoms"
 }
 ```
  

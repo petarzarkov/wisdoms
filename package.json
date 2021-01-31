@@ -1,13 +1,13 @@
 {
-  "name": "ts-starter",
+  "name": "wisdoms",
   "version": "1.0.0",
-  "description": "A base NodeJS project with TS, Lint, HTTP, and Koa",
+  "description": "An app for wisdoms",
   "keywords": [
     "node",
     "ts",
     "http",
     "koa",
-    "base"
+    "wisdoms"
   ],
   "author": "Petar Zarkov",
   "license": "MIT",
