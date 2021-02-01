@@ -5,6 +5,7 @@ export function buildResponse<R>(ctx: Context, response: R) {
     ctx.status = ctx.status || StatusCodes.INTERNAL_SERVER_ERROR;
     ctx.response.set("Content-Type", "application/json");
     ctx.body = response;
+    console.log("Responding with:", { response, status: ctx.status });
 }
 
 export function errorResponse(ctx: Context, error = "Oops! Something happened", status = StatusCodes.INTERNAL_SERVER_ERROR) {

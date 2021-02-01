@@ -1,7 +1,7 @@
 import { fetchConstructor } from "./FetchConstructor";
 
 export const fetchServices = {
-    getDadJoke: fetchConstructor<void, string>({
+    translateWisdom: fetchConstructor<void, string>({
         url: "https://icanhazdadjoke.com/",
         options: { eventName: "dadJoke" }
     }),

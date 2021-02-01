@@ -1,8 +1,9 @@
-# TS-starter
+# Wisdoms App
 An app for wisdoms
 
 Description
 -
+Generates random wisdoms
 
 Techonologies used
 
@@ -28,12 +29,8 @@ $ npm run start
 Example endpoints
 -
 
-Fetches a random dad joke
-* _/api/getDadJoke_ 
-
-Fetches a random dad joke based on query 'term'
-* _/api/searchDadJoke_ 
-* example: https://ts-starter-jokes.herokuapp.com/api/searchDadJoke?term=dad
+Fetches a random wisdom, default lang -> bg
+* _/api/getWisdom_ 
 
 Liveness probe
 * _/api/healthcheck_

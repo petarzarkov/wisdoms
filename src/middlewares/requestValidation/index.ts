@@ -22,7 +22,7 @@ export async function validateRequest(ctx: Context, next: () => Promise<void>): 
     const req = {...(ctx.request as Request).body, ...(ctx.request as Request).query };
     const validationRes = validator.validate(req, schemas[schemaKey]);
     if (!validationRes.valid) {
-        const error = `${schemaKey}: ${validationRes.errors.map(ve => `${ve.message}`).join("; ")}`;
+        const error = `${schemaKey}: ${validationRes.errors.map(ve => `${ve.path[0]} ${ve.message}`).join("; ")}`;
         console.warn("Invalid request format", { requestType: schemaKey, error });
         return buildResponse(ctx, errorResponse(ctx, error, StatusCodes.BAD_REQUEST));
     }

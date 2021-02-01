@@ -1,10 +1,9 @@
-import { randomWisdom } from "../utils/randomWisdom";
+import { randomWisdom, randomWisdomEn } from "../utils/randomWisdom";
 
-export const getWisdom = async ({ lang = "bg" }: { lang?: string}) => {
-    const wisdom = randomWisdom();
+export const getWisdom = async ({ lang = "bg" }: { lang?: string }) => {
 
     return {
-        wisdom,
+        wisdom: lang === "en" ? randomWisdomEn() : randomWisdom(),
         lang
     };
 };
