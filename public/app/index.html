@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html class="no-js" style="height: 100%">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <base href="/">
+    <title>Wisdoms App</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" href="images/favicon.ico">
+</head>
+
+<body style="max-width: 90%; margin: auto; background-color: #dadada;">
+    <h1 style="color: #276629;">Wisdoms App</h1>
+    <div id="wisdom" style="background-color: #e6e6e6; padding: 200px; font-size: 30px; margin: 5px;"></div>
+    <button onclick="getWisdom('bg')"
+        style="width: 49%; background-color: #4CAF50; color: rgb(255, 255, 255); height: 100px; font-size: 30px;">Bulgarian Wisdom</button>
+    <button onclick="getWisdom('en')" style="width: 49%; background-color: #4CAF50; color: rgb(255, 255, 255); height: 100px; font-size: 30px;">English
+        Wisdom</button>
+    <script>
+        function copyToClip(str) {
+            const el = document.createElement('textarea');
+            el.value = str;
+            el.setAttribute('readonly', '');
+            el.style.position = 'absolute';
+            el.style.left = '-9999px';
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            alert(`Copied: ${str}`);
+        };
+        async function getWisdom(lang) {
+            const res = await (await fetch(`api/getWisdom?lang=${lang || "en"}`)).json();
+            const wisdomPlaceholder = document.getElementById("wisdom");
+            wisdomPlaceholder.innerHTML = res.error ? res.error : `${res.wisdom} <button onclick="copyToClip('${res.wisdom.replace(/'/g,"")}')">${lang === "bg" ? "копирай" :"copy"}</button>`;
+        }
+        getWisdom();
+
+    </script>
+</body>
+
+</html>
