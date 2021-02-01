@@ -31,6 +31,8 @@ Example endpoints
 
 Fetches a random wisdom, default lang -> bg
 * _/api/getWisdom_ 
+* Example:
+https://wisdoms-app.herokuapp.com/api/getWisdom
 
 Liveness probe
 * _/api/healthcheck_
