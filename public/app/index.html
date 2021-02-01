@@ -12,8 +12,8 @@
 </head>
 
 <body style="max-width: 90%; margin: auto; background-color: #dadada;">
-    <h1 style="color: #276629;">Wisdoms App</h1>
-    <div id="wisdom" style="background-color: #e6e6e6; padding: 200px; font-size: 30px; margin: 5px;"></div>
+    <h1 style="color: #276629;"><img src="https://cdn.betterttv.net/emote/5b1740221c5a6065a7bad4b5/1x"> Wisdoms App <img src="https://cdn.betterttv.net/emote/5b1740221c5a6065a7bad4b5/1x"></h1>
+    <div id="wisdom" style="background-color: #e6e6e6; padding: 10px; font-size: 30px; margin: 5px;"></div>
     <button onclick="getWisdom('bg')"
         style="width: 49%; background-color: #4CAF50; color: rgb(255, 255, 255); height: 100px; font-size: 30px;">Bulgarian Wisdom</button>
     <button onclick="getWisdom('en')" style="width: 49%; background-color: #4CAF50; color: rgb(255, 255, 255); height: 100px; font-size: 30px;">English
@@ -34,10 +34,16 @@
         async function getWisdom(lang) {
             const res = await (await fetch(`api/getWisdom?lang=${lang || "en"}`)).json();
             const wisdomPlaceholder = document.getElementById("wisdom");
-            wisdomPlaceholder.innerHTML = res.error ? res.error : `${res.wisdom} <button onclick="copyToClip('${res.wisdom.replace(/'/g,"")}')">${lang === "bg" ? "копирай" :"copy"}</button>`;
+            const randomEmoteUrl = await getRandomEmote();
+            wisdomPlaceholder.innerHTML = res.error ? res.error : `${res.wisdom} <img src=${randomEmoteUrl}><button onclick="copyToClip('${res.wisdom.replace(/'/g,"")}')" style="margin: 5px;">${lang === "bg" ? "копирай" :"copy"}</button>`;
         }
         getWisdom();
+        async function getRandomEmote(size = "1x") {
+            const res = await (await fetch("https://api.betterttv.net/3/emotes/shared/trending?offset=0&limit=50")).json();
+            const random = res[Math.floor(Math.random() * Math.floor(res.length)) + 1];
 
+            return `https://cdn.betterttv.net/emote/${random.emote.id}/${size}`;
+        }
     </script>
 </body>
 
