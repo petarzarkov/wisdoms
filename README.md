@@ -26,6 +26,9 @@ $ npm run bns
 $ npm run start
 ```
 
+* Example app:
+https://wisdoms-app.herokuapp.com/
+
 Example endpoints
 -
 
