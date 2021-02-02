@@ -34,7 +34,7 @@ const copyToClip = (str: string) => {
     document.execCommand("copy");
     document.body.removeChild(el);
     const tooltip = document.getElementById("myTooltip");
-    if(tooltip) tooltip.innerHTML = "Copied: " + el.value;
+    if(tooltip) tooltip.innerHTML = "Copied: " + el.value.substr(0,5) + "...";
 };
 
 function outFunc() {
