@@ -30,6 +30,7 @@
     },
     "compileOnSave": false,
     "include": [
-        "src"
+        "src",
+        "public"
     ]
 }

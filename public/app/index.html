@@ -9,42 +9,20 @@
     <title>Wisdoms App</title>
     <meta name="viewport" content="width=device-width">
     <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles/main.css">
 </head>
 
-<body style="max-width: 90%; margin: auto; background-color: #dadada;">
-    <h1 style="color: #276629;"><img src="https://cdn.betterttv.net/emote/5b1740221c5a6065a7bad4b5/1x"> Wisdoms App <img src="https://cdn.betterttv.net/emote/5b1740221c5a6065a7bad4b5/1x"></h1>
-    <div id="wisdom" style="background-color: #e6e6e6; padding: 10px; font-size: 30px; margin: 5px;"></div>
-    <button onclick="getWisdom('bg')"
-        style="width: 49%; background-color: #4CAF50; color: rgb(255, 255, 255); height: 100px; font-size: 30px;">Bulgarian Wisdom</button>
-    <button onclick="getWisdom('en')" style="width: 49%; background-color: #4CAF50; color: rgb(255, 255, 255); height: 100px; font-size: 30px;">English
-        Wisdom</button>
-    <script>
-        function copyToClip(str) {
-            const el = document.createElement('textarea');
-            el.value = str;
-            el.setAttribute('readonly', '');
-            el.style.position = 'absolute';
-            el.style.left = '-9999px';
-            document.body.appendChild(el);
-            el.select();
-            document.execCommand('copy');
-            document.body.removeChild(el);
-            alert(`Copied: ${str}`);
-        };
-        async function getWisdom(lang) {
-            const res = await (await fetch(`api/getWisdom?lang=${lang || "en"}`)).json();
-            const wisdomPlaceholder = document.getElementById("wisdom");
-            const randomEmoteUrl = await getRandomEmote();
-            wisdomPlaceholder.innerHTML = res.error ? res.error : `${res.wisdom} <img src=${randomEmoteUrl}><button onclick="copyToClip('${res.wisdom.replace(/'/g,"")}')" style="margin: 5px;">${lang === "bg" ? "копирай" :"copy"}</button>`;
-        }
-        getWisdom();
-        async function getRandomEmote(size = "1x") {
-            const res = await (await fetch("https://api.betterttv.net/3/emotes/shared/trending?offset=0&limit=50")).json();
-            const random = res[Math.floor(Math.random() * Math.floor(res.length)) + 1];
-
-            return `https://cdn.betterttv.net/emote/${random.emote.id}/${size}`;
-        }
-    </script>
+<body>
+    <h1>
+        <img src="https://cdn.betterttv.net/emote/5b1740221c5a6065a7bad4b5/1x">
+        Wisdoms App
+        <img src="https://cdn.betterttv.net/emote/5b1740221c5a6065a7bad4b5/1x">
+    </h1>
+    <div id="wisdom" class="wisdom"></div>
+    <a onclick="getWisdom('bg')" class="buttons">Bulgarian Wisdom</a>
+    <a onclick="getWisdom('en')" class="buttons">English Wisdom</a>
+    <script src="/build/public/app/wisdom.js"></script>
 </body>
 
 </html>

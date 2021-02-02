@@ -13,9 +13,9 @@ export function configureStaticRoutes(routes: StaticRoute[]): ((ctx: Context, ne
         const resourcePath = ctx.request.path.replace(route.path, route.folder);
         let sent: string | undefined;
         try {
-            sent = await koaSend(ctx, resourcePath, { root: "public", index: "index.html" });
+            sent = await koaSend(ctx, resourcePath, { index: "index.html" });
         } catch (error) {
-            console.error("Exception caught in staticRoutes middleware", { err: <Error>error, data: { resourcePath } });
+            console.error("Exception caught in staticRoutes middleware", { err: <Error>error, data: { resourcePath, path: route.path, folder: route.folder } });
             sent = undefined;
         }
 

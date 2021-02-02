@@ -10,8 +10,8 @@ export async function startKoa(): Promise<void> {
 
     app.use(bodyParser());
     const publicRoutes: StaticRoute[] = [
-        { path: "/images", folder: "app/images" },
-        { path: "/", folder: "app" }
+        { path: "/build", folder: "build" },
+        { path: "/", folder: "public/app/" }
     ];
 
     app.use(logger());
