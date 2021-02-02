@@ -16,7 +16,7 @@ const getWisdom = async (lang = "en") => {
         wisdomPlaceholder.innerHTML = res.error ? res.error :
             `${res.wisdom} <img src=${randomEmoteUrl}>
             <div class="tooltip">
-            <button onclick="copyToClip('${res.wisdom.replace(/'/g, "")}')" style="margin: 5px; border: 0; color: green;" class="fa fa-copy">
+            <button onclick="copyToClip('${res.wisdom.replace(/'/g, "")}')" style="margin: 5px; border: 0; color: green; background-color: transparent;" class="fa fa-copy">
             <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
             </button>
             </div>`;
