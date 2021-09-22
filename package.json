@@ -22,11 +22,18 @@
     "build": "tsc -p tsconfig.json",
     "build:watch": "npm run build -- --watch",
     "lint": "tsc --noEmit && eslint -c .eslintrc.js --ext .ts,.tsx ./src",
-    "lint:fix": "npm run lint --fix"
+    "lint:fix": "npm run lint --fix",
+    "db:wisdoms:create": "node .bin/exec ./migrations/db-wisdoms sequelize db:create",
+    "db:wisdoms:migrate": "node .bin/exec ./migrations/db-wisdoms sequelize db:migrate",
+    "db:wisdoms:seed": "node .bin/seedBuilder db-wisdoms && node .bin/exec ./migrations/db-wisdoms sequelize db:seed:all",
+    "db:update": "npm run db:wisdoms:migrate && npm run db:wisdoms:seed"
   },
   "devDependencies": {
     "@types/jsonschema": "^1.1.1",
+    "@types/pg": "7.1.5",
     "@types/koa": "2.11.6",
+    "@types/validator": "10.11.0",
+    "@types/config": "0.0.37",
     "@types/koa-bodyparser": "4.3.0",
     "@types/koa-logger": "^3.1.1",
     "@types/koa-router": "7.4.1",
@@ -47,6 +54,12 @@
     "koa-router": "10.0.0",
     "koa-send": "^5.0.1",
     "node-fetch": "^2.6.1",
+    "config": "3.3.6",
+    "pg": "8.6.0",
+    "reflect-metadata": "0.1.13",
+    "sequelize": "6.6.2",
+    "sequelize-cli": "6.2.0",
+    "sequelize-typescript": "2.1.0",
     "ts-node": "^9.1.1"
   }
 }
