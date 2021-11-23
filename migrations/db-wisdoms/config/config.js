@@ -11,7 +11,6 @@ const env = process.env.NODE_ENV || "development";
 const dbName = process.env.DB_CONFIG_NAME || ext_config["name"] || "db-wisdoms";
 const dbHost = process.env.DB_CONFIG_HOST || ext_config.host || "localhost";
 const dbPort = process.env.DB_CONFIG_PORT || ext_config.port || "5432";
-const isSSL = process.env.PGSSLMODE ? process.env.PGSSLMODE === "require" : false;
 
 let dbUser = process.env.DB_CONFIG_USER || ext_config.username || "postgres";
 let dbPass = process.env.DB_CONFIG_PASS || ext_config.password || "postgres";
@@ -34,9 +33,12 @@ module.exports = {
     migrationStorageTableName: "_migrations",
     seederStorage: "sequelize",
     seederStorageTableName: "_seeders",
-    ssl: isSSL,
+    ssl: true,
     dialectOptions: {
-      ssl: isSSL
+      ssl: { 
+        require: true,
+        rejectUnauthorized: false
+      }
   }
   }
 };
