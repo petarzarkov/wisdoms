@@ -8,7 +8,7 @@ export function buildResponse<R>(ctx: Context, response: R) {
     ctx.status = ctx.status || StatusCodes.INTERNAL_SERVER_ERROR;
     ctx.response.set("Content-Type", "application/json");
     ctx.body = response;
-    log.info(`--> ${ctx.method} ${ctx.path} Responding with -`, { data: { response }, status: ctx.status, event: ctx.state.reqType });
+    log.info(`--> ${ctx.method} ${ctx.path} Responding with`, { data: { response }, status: ctx.status, event: ctx.state.reqType });
 }
 
 export function errorResponse(ctx: Context, error = "Oops! Something happened", status = StatusCodes.INTERNAL_SERVER_ERROR) {

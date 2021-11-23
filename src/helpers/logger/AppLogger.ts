@@ -78,7 +78,7 @@ export class AppLogger implements IAppLogger {
             stack = errFromString.stack;
         }
 
-        return {
+        return [{
             Message: v,
             ...logParams,
             SourceContext: this.name,
@@ -86,7 +86,7 @@ export class AppLogger implements IAppLogger {
             LogTimestamp: new Date().toISOString(),
             ...err && { ExceptionMessage: err, ...stack && { ExceptionStacktrace: stack } },
             ...params.err ? { ...params, err: undefined } : { ...params }
-        };
+        }];
     }
 
 }
