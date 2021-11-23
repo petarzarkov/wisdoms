@@ -3,6 +3,9 @@ import bodyParser from "koa-bodyparser";
 import { PORT } from "../utils";
 import { apiRouter } from "../routers";
 import { configureStaticRoutes, StaticRoute } from "../middlewares";
+import { createLogger } from "../helpers/logger";
+
+const log = createLogger("rest");
 
 export async function startKoa(): Promise<void> {
     const app = new Koa();
@@ -18,6 +21,6 @@ export async function startKoa(): Promise<void> {
     app.use(configureStaticRoutes(publicRoutes));
 
     app.listen(PORT, () => {
-        console.log("Starting app on...", JSON.stringify({ PORT }));
+        log.info("Starting app on...", { PORT });
     });
 }

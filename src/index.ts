@@ -1,5 +1,8 @@
 import { startKoa } from "./rest";
 import { connect } from "./db";
+import { createLogger } from "./helpers/logger";
+
+const log = createLogger("wisdoms-app");
 
 const start = async () => {
     await startKoa();
@@ -7,6 +10,6 @@ const start = async () => {
 };
 
 start().catch((err: Error) => {
-    console.error("Exception raised while starting koa.", JSON.stringify({ err }));
+    log.error("Exception raised while starting koa.", { err });
     setTimeout(() => process.exit(1), 1000);
 });

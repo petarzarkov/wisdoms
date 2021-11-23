@@ -1,11 +1,14 @@
 import { Context } from "koa";
 import { StatusCodes } from "http-status-codes";
+import { createLogger } from "../helpers/logger";
+
+const log = createLogger("response-builder");
 
 export function buildResponse<R>(ctx: Context, response: R) {
     ctx.status = ctx.status || StatusCodes.INTERNAL_SERVER_ERROR;
     ctx.response.set("Content-Type", "application/json");
     ctx.body = response;
-    console.log(`--> ${ctx.method} ${ctx.path} Responding with -`, JSON.stringify({ response, status: ctx.status }));
+    log.info(`--> ${ctx.method} ${ctx.path} Responding with -`, { data: { response }, status: ctx.status, event: ctx.state.reqType });
 }
 
 export function errorResponse(ctx: Context, error = "Oops! Something happened", status = StatusCodes.INTERNAL_SERVER_ERROR) {

@@ -4,6 +4,9 @@ import { DataTypes } from "sequelize";
 import { authenticationServiceFactory, AuthenticationStrategiesOptions, DBAuthenticationService } from "./auth";
 import { dbNames, DB_CONNECTION_RETRY_INTERVAL, getWisdomsDBConfigOptions } from "./constants";
 import { DBNames } from "./contracts";
+import { createLogger } from "../helpers/logger";
+
+const log = createLogger("db-connector");
 
 // Set PostGre configuration. More info: https://github.com/brianc/node-postgres/blob/master/packages/pg/lib/defaults.js
 pg.defaults.parseInt8 = true; // Parse BIGINT as integer, not as a string
@@ -44,7 +47,7 @@ const connect = async (onConnect?: () => Promise<void>): Promise<void> => {
         }
     } catch (error) {
         const err = error as Error;
-        console.error("Unable to connect DB", JSON.stringify({ err }));
+        log.error("Unable to connect DB", { err });
         // eslint-disable-next-line @typescript-eslint/no-misused-promises
         setTimeout(connect, DB_CONNECTION_RETRY_INTERVAL, onConnect);
         return;
