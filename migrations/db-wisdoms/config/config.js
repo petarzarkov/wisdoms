@@ -1,22 +1,13 @@
-const path = require('path');
-const ourConfigDir = path.join("../../../../", 'config');
+const baseConfig = require("../../../config/default.js").db.wisdoms;
 
 process.env.SUPPRESS_NO_CONFIG_WARNING = 'y'
-let config = require("config");
-
-const baseConfig = config.util.loadFileConfigs(ourConfigDir) || {};
-const ext_config = baseConfig.CasinoHubOperatordbConfig || {};
 
 const env = process.env.NODE_ENV || "development";
-const dbName = process.env.DB_CONFIG_NAME || ext_config["name"] || "db-wisdoms";
-const dbHost = process.env.DB_CONFIG_HOST || ext_config.host || "localhost";
-const dbPort = process.env.DB_CONFIG_PORT || ext_config.port || "5432";
-
-let dbUser = process.env.DB_CONFIG_USER || ext_config.username || "postgres";
-let dbPass = process.env.DB_CONFIG_PASS || ext_config.password || "postgres";
-
-dbUser = encodeURIComponent(dbUser); // we use it as a part of url schema MUST be encoded
-dbPass = encodeURIComponent(dbPass); // we use it as a part of url schema MUST be encoded
+const dbName = process.env.DB_CONFIG_NAME || baseConfig.name;
+const dbHost = process.env.DB_CONFIG_HOST || baseConfig.host;
+const dbPort = process.env.DB_CONFIG_PORT || baseConfig.port;
+const dbUser = encodeURIComponent(process.env.DB_CONFIG_USER || baseConfig.username);
+const dbPass = encodeURIComponent(process.env.DB_CONFIG_PASS || baseConfig.password);
 
 console.log("DB Info", JSON.stringify({
   env,
