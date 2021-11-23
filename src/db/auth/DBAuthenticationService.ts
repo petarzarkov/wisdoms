@@ -41,6 +41,7 @@ export abstract class DBAuthenticationService<O extends BaseOptions> {
             validateOnly: false,
             models: [`${__dirname}/../model/${this.dbModels}/*.model.*`],
             pool: { max: MAX_POOL_SIZE },
+            ssl: true,
             benchmark: true,
             logQueryParameters: DB_LOGGING_ENABLED,
             logging: DB_LOGGING_ENABLED ? ((query: string, duration?: number | undefined) => {
