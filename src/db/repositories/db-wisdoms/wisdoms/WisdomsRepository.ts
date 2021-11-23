@@ -17,6 +17,7 @@ const wisdomsBase = createBaseRepo({ table: TblWisdoms, mapTableToDTO: createDTO
 export const WisdomsRepository = {
     ...wisdomsBase,
     getRandom: async (lang: string, requestId?: string): Promise<IWisdomsDTO | undefined> => {
-        return wisdomsBase.getRandom({ lang }, requestId);
+        const wisdom = await wisdomsBase.getRandom({ lang }, requestId);
+        return wisdom.isSuccess ? wisdom.result : undefined;
     },
 };
