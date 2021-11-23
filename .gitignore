@@ -1,5 +1,6 @@
 node_modules
 build
+.env
 **/development/20210223123842-1-GEN-SEED-Wisdoms.js
 **/production/20210223123842-1-GEN-SEED-Wisdoms.js
 **/development/20210223123843-2-GEN-SEED-Wisdoms-Bg.js

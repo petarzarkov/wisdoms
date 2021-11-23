@@ -1,4 +1,4 @@
-export enum AuthStrategyType {Basic = "basic", VaultAppID = "vault_app_id", VaultToken = "vault_token" }
+export enum AuthStrategyType { Basic = "basic", VaultAppID = "vault_app_id", VaultToken = "vault_token" }
 
 export type BaseOptions = { name: string; host: string; port: number };
 export type LoginOptions = { strategy: AuthStrategyType.Basic; username: string; password: string };

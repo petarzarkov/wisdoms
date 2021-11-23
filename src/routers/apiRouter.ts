@@ -11,10 +11,10 @@ export function apiRouter(): Router {
 
     router.use(attachReqType);
     router.use(validateRequest);
-    
+
     router.get("GetWisdom", "/getWisdom", responseComposer(getWisdom));
 
     router.post("GetWisdom", "/getWisdom", responseComposer(postWisdom));
-    
+
     return router;
 }

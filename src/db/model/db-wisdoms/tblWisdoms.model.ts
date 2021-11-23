@@ -19,7 +19,6 @@ export class TblWisdoms extends Model {
     @Column({ allowNull: false, type: DataType.JSONB, defaultValue: {} })
     public params: Record<string, unknown>;
 
-
 }
 
 export default TblWisdoms;

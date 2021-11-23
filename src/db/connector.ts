@@ -9,7 +9,6 @@ import { DBNames } from "./contracts";
 pg.defaults.parseInt8 = true; // Parse BIGINT as integer, not as a string
 // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any
 (DataTypes as any).postgres.DECIMAL.parse = parseFloat;
-// pgTypes.setTypeParser(1231, (value: string) => pgTypes.arrayParser(value, parseFloat)); // Parser for DECIMAL
 
 let wisdomsDBService: DBAuthenticationService<AuthenticationStrategiesOptions>;
 
@@ -21,7 +20,6 @@ const connectWisdomsDBConfig = async (): Promise<Sequelize> => {
 
     return wisdomsDBService.authenticate(wisdomsDBOptions);
 };
-
 
 const getDBConnection = (dbNames: DBNames[]): Promise<Sequelize>[] => {
     return dbNames.map(async (name) => {
