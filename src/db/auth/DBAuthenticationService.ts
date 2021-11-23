@@ -47,7 +47,7 @@ export abstract class DBAuthenticationService<O extends BaseOptions> {
             logging: DB_LOGGING_ENABLED ? ((query: string, duration?: number | undefined) => {
                 const tableNameRgxr = query.match(/(?<=FROM )(.*)(?= AS)/g);
                 const tableName = tableNameRgxr ? tableNameRgxr[0]?.replace(/\\"|"/g, "") : undefined;
-                console.trace(`DB Query to ${tableName ? tableName + " " + <string>config.database : <string>config.database}`, { query, duration, tableName });
+                console.trace(`DB Query to ${tableName ? tableName + " " + <string>config.database : <string>config.database}`, JSON.stringify({ query, duration, tableName }));
             }) : undefined
         };
         const sequelizeConfig = { ...defaults, ...config };
@@ -55,10 +55,10 @@ export abstract class DBAuthenticationService<O extends BaseOptions> {
 
         this.sequelize.authenticate()
             .then(() => {
-                console.info(`Connection has been established successfully to ${<string>config.database}.`, { data: { port: config.port, pool: sequelizeConfig.pool } });
+                console.info(`Connection has been established successfully to ${<string>config.database}.`, JSON.stringify({ data: { port: config.port, pool: sequelizeConfig.pool } }));
             })
             .catch((err: Error) => {
-                console.error(`Unable to connect to the ${<string>config.database} database!`, { err, data: { port: config.port } });
+                console.error(`Unable to connect to the ${<string>config.database} database!`, JSON.stringify({ err, data: { port: config.port } }));
             });
 
         if (this.hooks) {

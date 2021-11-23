@@ -44,7 +44,7 @@ const connect = async (onConnect?: () => Promise<void>): Promise<void> => {
         }
     } catch (error) {
         const err = error as Error;
-        console.error("Unable to connect DB", { err });
+        console.error("Unable to connect DB", JSON.stringify({ err }));
         // eslint-disable-next-line @typescript-eslint/no-misused-promises
         setTimeout(connect, DB_CONNECTION_RETRY_INTERVAL, onConnect);
         return;

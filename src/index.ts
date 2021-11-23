@@ -7,6 +7,6 @@ const start = async () => {
 };
 
 start().catch((err: Error) => {
-    console.error("Exception raised while starting koa.", { err });
+    console.error("Exception raised while starting koa.", JSON.stringify({ err }));
     setTimeout(() => process.exit(1), 1000);
 });

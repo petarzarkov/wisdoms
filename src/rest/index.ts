@@ -18,6 +18,6 @@ export async function startKoa(): Promise<void> {
     app.use(configureStaticRoutes(publicRoutes));
 
     app.listen(PORT, () => {
-        console.log("Starting app on...", { PORT });
+        console.log("Starting app on...", JSON.stringify({ PORT }));
     });
 }

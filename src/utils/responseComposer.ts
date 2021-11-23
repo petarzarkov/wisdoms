@@ -9,7 +9,7 @@ export const responseComposer = <T, R>(handler: (request: T) => Promise<R>) => {
         try {
             buildResponse(ctx, successResponse(ctx, await handler(req)));
         } catch (error) {
-            console.error(`Error raised on ${ctx.path} request`, { err: <Error>error });
+            console.error(`Error raised on ${ctx.path} request`, JSON.stringify({ err: <Error>error }));
             buildResponse(ctx, errorResponse(ctx));
         }
     };

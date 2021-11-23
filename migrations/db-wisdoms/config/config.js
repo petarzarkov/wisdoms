@@ -18,13 +18,13 @@ let dbPass = process.env.DB_CONFIG_PASS || ext_config.password || "postgres";
 dbUser = encodeURIComponent(dbUser); // we use it as a part of url schema MUST be encoded
 dbPass = encodeURIComponent(dbPass); // we use it as a part of url schema MUST be encoded
 
-console.log("DB Info", {
+console.log("DB Info", JSON.stringify({
   env,
   dbName,
   dbHost,
   dbPort,
   dbUser
-});
+}));
 
 module.exports = {
   [env]: {
@@ -32,13 +32,6 @@ module.exports = {
     dialect: "postgres", //app.get('db_dialect'),
     migrationStorageTableName: "_migrations",
     seederStorage: "sequelize",
-    seederStorageTableName: "_seeders",
-    ssl: true,
-    dialectOptions: {
-      ssl: { 
-        require: true,
-        rejectUnauthorized: false
-      }
-  }
+    seederStorageTableName: "_seeders"
   }
 };

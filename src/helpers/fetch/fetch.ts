@@ -38,16 +38,16 @@ export async function fetchService<TRequest, TResponse>(baseReq: HttpRequest<TRe
         const result = await rawResponse.json();
         if (!rawResponse.ok) {
             const message = `${method} Request unsuccessful response`;
-            console.warn(message, { eventName, url, duration: sw.getElapsed(), data: { payload, result, statusCode: rawResponse.status } });
+            console.warn(message, JSON.stringify({ eventName, url, duration: sw.getElapsed(), data: { payload, result, statusCode: rawResponse.status } }));
             return { isSuccess: false, error: message, statusCode: rawResponse.status, result };
         }
-        console.log(`${method} Request successful response`, {
+        console.log(`${method} Request successful response`, JSON.stringify({
             eventName, url, duration: sw.getElapsed(), data: { payload, result, statusCode: rawResponse.status }
-        });
+        }));
         return { isSuccess: true, statusCode: rawResponse.status || StatusCodes.OK, result };
     } catch (err) {
         const message = `Failed on ${method} Request`;
-        console.error(message, { eventName, err: <Error>err, url, duration: sw.getElapsed(), data: { payload, statusCode: rawResponse?.status, rawResponse } });
+        console.error(message, JSON.stringify({ eventName, err: <Error>err, url, duration: sw.getElapsed(), data: { payload, statusCode: rawResponse?.status, rawResponse } }));
         return { isSuccess: false, error: (err as Error)?.message || message, statusCode: rawResponse?.status };
     }
 
