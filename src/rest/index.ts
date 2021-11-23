@@ -1,6 +1,5 @@
 import Koa from "koa";
 import bodyParser from "koa-bodyparser";
-import logger from "koa-logger";
 import { PORT } from "../utils";
 import { apiRouter } from "../routers";
 import { configureStaticRoutes, StaticRoute } from "../middlewares";
@@ -13,8 +12,6 @@ export async function startKoa(): Promise<void> {
         { path: "/build", folder: "build" },
         { path: "/", folder: "public/app/" }
     ];
-
-    app.use(logger());
 
     app.use(apiRouter().routes());
 
