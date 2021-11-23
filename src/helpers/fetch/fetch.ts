@@ -3,6 +3,9 @@ import { StatusCodes } from "http-status-codes";
 import { Stopwatch } from "..";
 import { HttpRequest, HttpResponse } from "../../contracts";
 import { buildUrl, replacePathParams } from "../../utils";
+import { createLogger } from "../logger";
+
+const log = createLogger("fetch");
 
 export async function fetchService<TRequest, TResponse>(baseReq: HttpRequest<TRequest>): Promise<HttpResponse<TResponse>> {
     const { options, payload, url: baseUrl, method = "GET" } = baseReq;
@@ -30,7 +33,7 @@ export async function fetchService<TRequest, TResponse>(baseReq: HttpRequest<TRe
         requestOptions.headers = { ...requestOptions.headers, ...customHeaders };
     }
 
-    console.log(`Sending ${method} Request`, { eventName, url, data: { payload, queryParams, pathParams } });
+    log.info(`Sending ${method} Request`, { eventName, url, data: { payload, queryParams, pathParams } });
     const sw = new Stopwatch();
     let rawResponse: Response | undefined;
     try {
@@ -38,16 +41,16 @@ export async function fetchService<TRequest, TResponse>(baseReq: HttpRequest<TRe
         const result = await rawResponse.json();
         if (!rawResponse.ok) {
             const message = `${method} Request unsuccessful response`;
-            console.warn(message, JSON.stringify({ eventName, url, duration: sw.getElapsed(), data: { payload, result, statusCode: rawResponse.status } }));
+            log.warn(message, { eventName, url, duration: sw.getElapsed(), data: { payload, result, statusCode: rawResponse.status } });
             return { isSuccess: false, error: message, statusCode: rawResponse.status, result };
         }
-        console.log(`${method} Request successful response`, JSON.stringify({
+        log.info(`${method} Request successful response`, {
             eventName, url, duration: sw.getElapsed(), data: { payload, result, statusCode: rawResponse.status }
-        }));
+        });
         return { isSuccess: true, statusCode: rawResponse.status || StatusCodes.OK, result };
     } catch (err) {
         const message = `Failed on ${method} Request`;
-        console.error(message, JSON.stringify({ eventName, err: <Error>err, url, duration: sw.getElapsed(), data: { payload, statusCode: rawResponse?.status, rawResponse } }));
+        log.error(message, { eventName, err: <Error>err, url, duration: sw.getElapsed(), data: { payload, statusCode: rawResponse?.status, rawResponse } });
         return { isSuccess: false, error: (err as Error)?.message || message, statusCode: rawResponse?.status };
     }
 
