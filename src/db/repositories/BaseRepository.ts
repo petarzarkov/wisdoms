@@ -1,5 +1,6 @@
 import { Model, Repository } from "sequelize-typescript";
 import { FindOptions, NonNullFindOptions, Order, Transaction, UpdateOptions, UpsertOptions, WhereOptions } from "sequelize/types";
+import { literal } from "sequelize";
 
 interface IBaseRepo<ModelClass, ModelDTO> {
     table: Repository<ModelClass>;
@@ -127,6 +128,19 @@ export const createBaseRepo = <ModelClass extends Model<ModelClass, ModelDTO>, M
                 log.error(`Error executing getLast ${tableName}`, { err: <Error>err, requestId });
                 return undefined;
             }
-        }
+        },
+        getRandom: async (where: WhereOptions<ModelDTO>, requestId?: string): Promise<ModelDTO | undefined> => {
+            try {
+                const res = await table.findOne(<FindOptions<ModelClass>>{
+                    where,
+                    offset: literal("floor(random()*1000)") as unknown as number,
+                    limit: 1
+                });
+                return res ? mapTableToDTO(res) : undefined;
+            } catch (err) {
+                log.error(`Error executing getRandom ${tableName}`, { err: <Error>err, requestId });
+                return undefined;
+            }
+        },
     };
 };

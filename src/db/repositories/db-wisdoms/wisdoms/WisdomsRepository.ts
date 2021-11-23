@@ -15,5 +15,8 @@ function createDTOFromModel(model: TblWisdoms): IWisdomsDTO {
 const wisdomsBase = createBaseRepo({ table: TblWisdoms, mapTableToDTO: createDTOFromModel, log: console });
 
 export const WisdomsRepository = {
-    ...wisdomsBase
+    ...wisdomsBase,
+    getRandom: async (lang: string, requestId?: string): Promise<IWisdomsDTO | undefined> => {
+        return wisdomsBase.getRandom({ lang }, requestId);
+    },
 };
