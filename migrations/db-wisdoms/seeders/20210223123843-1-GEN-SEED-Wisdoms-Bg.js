@@ -1,3 +1,38 @@
+'use strict';
+
+function getRandomNumber(l) {
+    return Math.floor(Math.random() * Math.floor(l)) + 1;
+}
+
+const randomWisdom = () => {
+    const first = wisdomsBG[getRandomNumber(wisdomsBG.length)];
+    const second = wisdomsBG[getRandomNumber(wisdomsBG.length)];
+    const third = wisdomsBG[getRandomNumber(wisdomsBG.length)];
+    const final = `${first}, ${second}${getRandomNumber(2) === 2 ? `, ${third}` : ""}`.trim().toLowerCase().replace(/\.|!/g, "").replace(/\s{2,}/g, " ") + ".";
+
+    return final[0].toUpperCase() + final.slice(1);
+};
+
+module.exports = {
+  up: async (queryInterface, Sequelize) => {
+    const bgWisdoms = new Array(1000).fill("name").map((id, index) => {
+        const randWisdom = randomWisdom();
+        return {
+            name: `${id}-${index}`,
+            joke: randWisdom,
+            lang: "bg",
+            params: JSON.stringify({ dateInsertedMs: Date.now(), lastUpdated: Date.now() })
+        }
+    })
+    await queryInterface.bulkInsert('tblWisdoms', bgWisdoms, {});
+  },
+
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.bulkDelete('tblWisdoms', null, { joke: "Hehehehe" });
+  }
+};
+
+
 const data = [
     "Абе то ще се мре, ама току здраве да е.",
     "Агне в чувал не се купува.",
@@ -1363,5 +1398,5 @@ const data = [
     "Ша стОвара тоо хУй насред хола,да са ебете целата къща!",
     "Днеска ша, а бе тура ли го на майкя му у пичката, питай ма заранка."
 ];
-export const wisdoms = data.map(e => e.split(",")).reduce((acc, val) => acc.concat(val), []);
+const wisdomsBG = data.map(e => e.split(",")).reduce((acc, val) => acc.concat(val), []);
 

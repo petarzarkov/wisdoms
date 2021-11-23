@@ -1,7 +1,9 @@
 import { startKoa } from "./rest";
+import { connect } from "./db";
 
 const start = async () => {
     await startKoa();
+    await connect();
 };
 
 start().catch((err: Error) => {

@@ -15,7 +15,7 @@ module.exports = {
     sourceType: 'module',
     project: ["tsconfig.json"]
   },
-  ignorePatterns: ['.eslintrc.js'], // ignore urself
+  ignorePatterns: ["**/*.js", "**/*.json", "build"], // ignore urself
   plugins: ["@typescript-eslint"],
   rules: {
     "@typescript-eslint/explicit-module-boundary-types": "off",

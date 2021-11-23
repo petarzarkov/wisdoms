@@ -1,6 +1,6 @@
 import Router from "koa-router";
 import { attachReqType, validateRequest } from "../middlewares";
-import { healthcheck, getWisdom } from "../api";
+import { healthcheck, getWisdom, postWisdom } from "../api";
 import { responseComposer } from "../utils";
 
 export function apiRouter(): Router {
@@ -13,6 +13,8 @@ export function apiRouter(): Router {
     router.use(validateRequest);
 
     router.get("GetWisdom", "/getWisdom", responseComposer(getWisdom));
+
+    router.post("GetWisdom", "/getWisdom", responseComposer(postWisdom));
 
     return router;
 }
