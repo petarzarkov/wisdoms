@@ -1,9 +1,9 @@
 
 import { Context, Request } from "koa";
-import { createLogger } from "../helpers/logger";
 import { buildResponse, errorResponse, successResponse } from "./responseBuilder";
+import { HotLogger } from "@p.zarkov/hotstuff";
 
-const log = createLogger("response-composer");
+const log = HotLogger.createLogger("response-composer");
 
 export const responseComposer = <T, R>(handler: (request: T) => Promise<R>) => {
     return async (ctx: Context) => {

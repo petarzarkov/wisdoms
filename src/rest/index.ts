@@ -3,9 +3,9 @@ import bodyParser from "koa-bodyparser";
 import { PORT } from "../utils";
 import { apiRouter } from "../routers";
 import { configureStaticRoutes, StaticRoute } from "../middlewares";
-import { createLogger } from "../helpers/logger";
+import { HotLogger } from "@p.zarkov/hotstuff";
 
-const log = createLogger("rest");
+const log = HotLogger.createLogger("rest");
 
 export async function startKoa(): Promise<void> {
     const app = new Koa();

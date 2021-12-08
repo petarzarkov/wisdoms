@@ -4,9 +4,9 @@ import { DataTypes } from "sequelize";
 import { authenticationServiceFactory, AuthenticationStrategiesOptions, DBAuthenticationService } from "./auth";
 import { dbNames, DB_CONNECTION_RETRY_INTERVAL, getWisdomsDBConfigOptions } from "./constants";
 import { DBNames } from "./contracts";
-import { createLogger } from "../helpers/logger";
+import { HotLogger } from "@p.zarkov/hotstuff";
 
-const log = createLogger("db-connector");
+const log = HotLogger.createLogger("db-connector");
 
 // Set PostGre configuration. More info: https://github.com/brianc/node-postgres/blob/master/packages/pg/lib/defaults.js
 pg.defaults.parseInt8 = true; // Parse BIGINT as integer, not as a string

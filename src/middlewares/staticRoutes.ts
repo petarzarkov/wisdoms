@@ -1,8 +1,8 @@
 import { Context } from "koa";
 import koaSend from "koa-send";
-import { createLogger } from "../helpers/logger";
+import { HotLogger } from "@p.zarkov/hotstuff";
 
-const log = createLogger("static-routes");
+const log = HotLogger.createLogger("static-routes");
 
 export type StaticRoute = { path: string | RegExp; folder: string };
 

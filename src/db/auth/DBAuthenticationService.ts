@@ -2,9 +2,9 @@ import { SequelizeOptions, Sequelize } from "sequelize-typescript";
 import { DB_LOGGING_ENABLED, MAX_POOL_SIZE } from "../constants";
 import { BaseOptions } from "./AuthenticationTypes";
 import { DBNames } from "../contracts/enums/DBNames";
-import { createLogger } from "../../helpers/logger";
+import { HotLogger } from "@p.zarkov/hotstuff";
 
-const log = createLogger("db-auth-service");
+const log = HotLogger.createLogger("db-auth-service");
 
 export abstract class DBAuthenticationService<O extends BaseOptions> {
 

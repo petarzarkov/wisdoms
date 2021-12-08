@@ -1,8 +1,8 @@
 import { Context } from "koa";
 import { StatusCodes } from "http-status-codes";
-import { createLogger } from "../helpers/logger";
+import { HotLogger } from "@p.zarkov/hotstuff";
 
-const log = createLogger("response-builder");
+const log = HotLogger.createLogger("response-builder");
 
 export function buildResponse<R>(ctx: Context, response: R) {
     ctx.status = ctx.status || StatusCodes.INTERNAL_SERVER_ERROR;

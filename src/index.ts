@@ -1,8 +1,8 @@
 import { startKoa } from "./rest";
 import { connect } from "./db";
-import { createLogger } from "./helpers/logger";
+import { HotLogger } from "@p.zarkov/hotstuff";
 
-const log = createLogger("wisdoms-app");
+const log = HotLogger.createLogger("wisdoms-app");
 
 const start = async () => {
     await startKoa();

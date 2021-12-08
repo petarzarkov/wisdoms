@@ -3,9 +3,9 @@ import { StatusCodes } from "http-status-codes";
 import { Validator } from "jsonschema";
 import { schemas } from "./schemas";
 import { buildResponse, errorResponse } from "../../utils";
-import { createLogger } from "../../helpers/logger";
+import { HotLogger } from "@p.zarkov/hotstuff";
 
-const log = createLogger("request-validation");
+const log = HotLogger.createLogger("request-validation");
 
 const schemaKeys = Object.keys(schemas);
 const validator = new Validator();
