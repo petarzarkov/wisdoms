@@ -3,7 +3,7 @@ import bodyParser from "koa-bodyparser";
 import { PORT } from "../utils";
 import { apiRouter } from "../routers";
 import { configureStaticRoutes, StaticRoute } from "../middlewares";
-import { HotLogger } from "@p.zarkov/hotstuff";
+import { HotLogger } from "hot-utils";
 
 const log = HotLogger.createLogger("rest");
 

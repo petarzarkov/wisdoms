@@ -1,6 +1,6 @@
 import { Context } from "koa";
 import { StatusCodes } from "http-status-codes";
-import { HotLogger } from "@p.zarkov/hotstuff";
+import { HotLogger } from "hot-utils";
 
 const log = HotLogger.createLogger("response-builder");
 

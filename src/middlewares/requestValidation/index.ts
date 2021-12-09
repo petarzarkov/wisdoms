@@ -3,7 +3,7 @@ import { StatusCodes } from "http-status-codes";
 import { Validator } from "jsonschema";
 import { schemas } from "./schemas";
 import { buildResponse, errorResponse } from "../../utils";
-import { HotLogger } from "@p.zarkov/hotstuff";
+import { HotLogger } from "hot-utils";
 
 const log = HotLogger.createLogger("request-validation");
 

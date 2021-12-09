@@ -4,7 +4,7 @@ import { DataTypes } from "sequelize";
 import { authenticationServiceFactory, AuthenticationStrategiesOptions, DBAuthenticationService } from "./auth";
 import { dbNames, DB_CONNECTION_RETRY_INTERVAL, getWisdomsDBConfigOptions } from "./constants";
 import { DBNames } from "./contracts";
-import { HotLogger } from "@p.zarkov/hotstuff";
+import { HotLogger } from "hot-utils";
 
 const log = HotLogger.createLogger("db-connector");
 

@@ -1,7 +1,7 @@
 
 import { Context, Request } from "koa";
 import { buildResponse, errorResponse, successResponse } from "./responseBuilder";
-import { HotLogger } from "@p.zarkov/hotstuff";
+import { HotLogger } from "hot-utils";
 
 const log = HotLogger.createLogger("response-composer");
 

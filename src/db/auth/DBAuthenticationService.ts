@@ -2,7 +2,7 @@ import { SequelizeOptions, Sequelize } from "sequelize-typescript";
 import { DB_LOGGING_ENABLED, MAX_POOL_SIZE } from "../constants";
 import { BaseOptions } from "./AuthenticationTypes";
 import { DBNames } from "../contracts/enums/DBNames";
-import { HotLogger } from "@p.zarkov/hotstuff";
+import { HotLogger } from "hot-utils";
 
 const log = HotLogger.createLogger("db-auth-service");
 

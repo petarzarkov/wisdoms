@@ -1,6 +1,6 @@
 import { Context } from "koa";
 import koaSend from "koa-send";
-import { HotLogger } from "@p.zarkov/hotstuff";
+import { HotLogger } from "hot-utils";
 
 const log = HotLogger.createLogger("static-routes");
 

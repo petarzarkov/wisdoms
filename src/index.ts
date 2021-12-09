@@ -1,6 +1,6 @@
 import { startKoa } from "./rest";
 import { connect } from "./db";
-import { HotLogger } from "@p.zarkov/hotstuff";
+import { HotLogger } from "hot-utils";
 
 const log = HotLogger.createLogger("wisdoms-app");
 
