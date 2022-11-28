@@ -1,3 +1,6 @@
+# Deprecated because Heroku are greedy, moved to:
+# https://github.com/petarzarkov/wisdoms-nest
+
 # Wisdoms App
 An app for wisdoms
 
