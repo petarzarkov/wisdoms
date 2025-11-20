@@ -57,7 +57,7 @@ h1 {
 
 a.buttons:hover {
   background: transparent;
-  background-image: url('/images/f-1x.gif');
+  background-image: url('../images/f-1x.gif');
   border: 3px solid #000000;
 }
 
