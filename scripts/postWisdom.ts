@@ -28,8 +28,9 @@ export const postWisdomToSlack = async (
   if (!botToken) {
     throw new Error('SLACK_BOT_TOKEN is not set');
   }
-  const wisdom = await getRandomWisdom('bg');
-  console.log({ wisdom });
+  const lang: 'bg' | 'en' = Math.random() < 0.5 ? 'bg' : 'en';
+  const wisdom = await getRandomWisdom(lang);
+  console.log({ lang, wisdom });
   if (wisdom) {
     await postWisdomToSlack(botToken, 'C09UW5JB5FS', wisdom);
   }
