@@ -1,0 +1,35 @@
+name: Daily Wisdoms
+
+on:
+  schedule:
+    # Run at 6:00 AM UTC (8:00 AM Sofia Time - EET/UTC+2)
+    - cron: '0 6 * * *'
+    # Run at 3:00 PM UTC (5:00 PM Sofia Time - EET/UTC+2)
+    - cron: '0 15 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  send-wisdom:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24.11'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 10.20.0
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Post daily wisdom to Slack
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        run: pnpm run wisdoms:post

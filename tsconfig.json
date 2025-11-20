@@ -1,36 +1,26 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "target": "es6",
-        "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true,
-        "sourceMap": true,
-        "declaration": true,
-        "strict": true,
-        "noImplicitAny": true,
-        "noImplicitThis": true,
-        "forceConsistentCasingInFileNames": true,
-        "strictNullChecks": true,
-        "alwaysStrict": true,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
-        "noUnusedParameters": true,
-        "noUnusedLocals": true,
-        "strictPropertyInitialization": false,
-        "moduleResolution": "node",
-        "watch": false,
-        "outDir": "build",
-        "baseUrl": ".",
-        "paths": {
-            "*": [
-                "node_modules/*",
-                "src/types/*"
-            ]
-        }
-    },
-    "compileOnSave": false,
-    "include": [
-        "src",
-        "public"
-    ]
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022", "DOM"],
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "types": ["node"]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
 }

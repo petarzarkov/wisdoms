@@ -1,9 +1,7 @@
-node_modules
-build
+node_modules/
+dist/
 .env
-**/development/20210223123842-1-GEN-SEED-Wisdoms.js
-**/production/20210223123842-1-GEN-SEED-Wisdoms.js
-**/development/20210223123843-2-GEN-SEED-Wisdoms-Bg.js
-**/production/20210223123843-2-GEN-SEED-Wisdoms-Bg.js
-**/development/20210223123844-2-GEN-SEED-Wisdoms-En.js
-**/production/20210223123844-2-GEN-SEED-Wisdoms-En.js
+*.log
+.DS_Store
+
+.eslintcache
